@@ -36,4 +36,14 @@ public class LiderDesktopTest {
 				.isEmpty());
 	}
 
+	@Test
+	public void testTvzing() {
+		Lider lider = new Lider();
+		assertEquals(
+				2,
+				lider.detect(
+						"http://tv.zing.vn/video/Hay-Nham-Mat-Khi-Anh-Den-Tap-14/IWZBB9U6.html")
+						.size());
+	}
+
 }

@@ -29,4 +29,17 @@ public class MainApplication {
 					new Error(1, e.getMessage())).build()).toString();
 		}
 	}
+
+	@GET
+	@Path("/support")
+	@Produces("application/json;charset=UTF-8")
+	public String getSupportPattern() {
+		try {
+			return new JSONObject(new MessageBuilder().dataAll(
+					lider.getSupportPatterns()).build()).toString();
+		} catch (Exception e) {
+			return new JSONObject(new MessageBuilder().error(
+					new Error(1, e.getMessage())).build()).toString();
+		}
+	}
 }

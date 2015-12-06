@@ -1,5 +1,6 @@
 package com.broduce.lide;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -7,7 +8,6 @@ import org.apache.log4j.Logger;
 
 import com.broduce.lide.demo.AnimevnCrawler;
 import com.broduce.lide.demo.ChiasenhacCrawler;
-import com.broduce.lide.demo.ClipvnCrawler;
 import com.broduce.lide.demo.DailymotionCrawler;
 import com.broduce.lide.demo.Phim3sCrawler;
 import com.broduce.lide.demo.PhimmoiCrawler;
@@ -27,9 +27,8 @@ import com.broduce.lide.desktop.NhacsoCrawler;
 import com.broduce.lide.desktop.NhacsoVideoCrawler;
 import com.broduce.lide.desktop.NhacvuiBaihatCrawler;
 import com.broduce.lide.desktop.NhacvuiVideoCrawler;
+import com.broduce.lide.desktop.TvzingCrawler;
 import com.broduce.lide.desktop.YoutubeCrawler;
-import com.broduce.lide.mobile.MKeengAlbumCrawler;
-import com.broduce.lide.mobile.MKeengBaihatCrawler;
 import com.broduce.lide.mobile.MKeengVideoCrawler;
 import com.broduce.lide.mobile.MMp3zingAlbumCrawler;
 import com.broduce.lide.mobile.MMp3zingVideoCrawler;
@@ -49,13 +48,13 @@ public class Lider {
 	private HashMap<String, AbstractCrawler> hm = new HashMap<String, AbstractCrawler>();
 
 	public Lider() {
-		hm.put("https?://(www\\.)?(m\\.)?soundcloud.com/.*",
+		hm.put("https?://(www\\.)?(m\\.)?soundcloud.com/.*/.*",
 				new SoundcloundCrawler());
 
-		hm.put("https?://(www\\.)?(m\\.)?dailymotion.com/.*",
+		hm.put("https?://(www\\.)?(m\\.)?dailymotion.com/video/.*",
 				new DailymotionCrawler());
 
-		hm.put("https?://(www\\.)?(m\\.)?vimeo.com/.*", new VimeoCrawler());
+		hm.put("https?://(www\\.)?(m\\.)?vimeo.com/[0-9]+", new VimeoCrawler());
 
 		hm.put("https?://(www\\.)?(m\\.)?phimmoi.net/.*", new PhimmoiCrawler());
 
@@ -142,6 +141,8 @@ public class Lider {
 
 		hm.put("https?://(www\\.)?(playlist.)?chiasenhac.com.*",
 				new ChiasenhacCrawler());
+
+		hm.put("https?://(www\\.)?tv.zing.vn/video/.*", new TvzingCrawler());
 	}
 
 	public List<Info> detect(String url) {
@@ -158,4 +159,14 @@ public class Lider {
 		throw new RuntimeException("pattern not found");
 	}
 
+	public List<String> getSupportPatterns() {
+		List<String> rs = new ArrayList<String>();
+		rs.addAll(hm.keySet());
+		for (int i = rs.size() - 1; i >= 0; i--) {
+			if (rs.get(i).contains("youtube")) {
+				rs.remove(i);
+			}
+		}
+		return rs;
+	}
 }
