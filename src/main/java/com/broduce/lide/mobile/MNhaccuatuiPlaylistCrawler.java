@@ -18,6 +18,7 @@ public class MNhaccuatuiPlaylistCrawler extends AbstractCrawler {
 		Pattern ptn = Pattern
 				.compile("titles\\[[0-9]+\\]=\"([^\"]+)\";songs\\[[0-9]+\\]=\"([^\"]+mp[43])");
 		Matcher mtc = ptn.matcher(body);
+		System.out.println(body);
 		while (mtc.find()) {
 			result.add(new Info(mtc.group(1).replace("Nghe bài hát ", ""), mtc
 					.group(2), "mp3"));

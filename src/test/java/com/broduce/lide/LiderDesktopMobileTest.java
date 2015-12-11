@@ -94,7 +94,7 @@ public class LiderDesktopMobileTest {
 						.size());
 	}
 
-	@Test
+	// @Test
 	public void testClipvn() {
 		Lider lider = new Lider();
 		assertEquals(

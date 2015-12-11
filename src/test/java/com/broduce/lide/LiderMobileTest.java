@@ -41,6 +41,9 @@ public class LiderMobileTest {
 	public void testMMp3zing() {
 		Lider lider = new Lider();
 		assertFalse(lider
+				.detect("http://m.mp3.zing.vn/bai-hat/Vi-Toi-Con-Song-Tien-Tien/ZW7WFOU6.html")
+				.isEmpty());
+		assertFalse(lider
 				.detect("http://m.mp3.zing.vn/album/Vo-Nguoi-Ta-Phan-Manh-Quynh/ZWZC0F0U.html")
 				.isEmpty());
 		assertEquals(
