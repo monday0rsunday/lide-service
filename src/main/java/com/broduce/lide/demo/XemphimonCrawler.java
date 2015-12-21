@@ -2,7 +2,9 @@ package com.broduce.lide.demo;
 
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,9 +32,12 @@ public class XemphimonCrawler extends AbstractCrawler {
 		}
 		if (mtc.find()) {
 			try {
+				Map<String, String> headerMap = new HashMap<String, String>();
+				headerMap.put("Content-Type",
+						"application/x-www-form-urlencoded");
 				String jsBody = post(
-						"http://play.xemphimon.com/proxy/proxy.php", "file="
-								+ URLEncoder.encode(mtc.group(1)));
+						"http://play.xemphimon.com/proxy/proxy.php", headerMap,
+						"file=" + URLEncoder.encode(mtc.group(1)));
 				JSONObject jsonObj = new JSONObject(jsBody);
 				JSONArray jsonArr = jsonObj.getJSONArray("result");
 				for (int i = 0; i < jsonArr.length(); i++) {
@@ -48,5 +53,4 @@ public class XemphimonCrawler extends AbstractCrawler {
 		}
 		return result;
 	}
-
 }

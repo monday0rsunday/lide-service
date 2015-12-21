@@ -1,7 +1,9 @@
 package com.broduce.lide.demo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,9 +23,11 @@ public class VimeoCrawler extends AbstractCrawler {
 	@Override
 	public List<Info> crawl(String url) {
 		List<Info> result = new ArrayList<Info>();
+		Map<String, String> headerMap = new HashMap<String, String>();
+		headerMap.put("User-Agent", UserAgent.getUserAgent(true));
 		String body = get(
 				url.replace("//vimeo.com", "//player.vimeo.com/video"),
-				UserAgent.getUserAgent(true), "");
+				headerMap);
 		Matcher mtc = ptn.matcher(body);
 		if (mtc.find()) {
 			try {

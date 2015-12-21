@@ -79,7 +79,7 @@ public class LiderMobileTest {
 				"http://m.nhacso.net/nghe-nhac/bien-tinh.W11UVkpc.html")
 				.isEmpty());
 		assertEquals(
-				27,
+				30,
 				lider.detect(
 						"http://m.nhacso.net/nghe-playlist/cam-xuc.XFhRVEpZaA==.html")
 						.size());

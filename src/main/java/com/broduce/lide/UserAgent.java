@@ -10,7 +10,7 @@ public class UserAgent {
 
 	public static String getUserAgent(boolean isMobi) {
 		if (isMobi) {
-			return deskAgents[rand.nextInt(mobiAgents.length)];
+			return mobiAgents[rand.nextInt(mobiAgents.length)];
 		} else {
 			return deskAgents[rand.nextInt(deskAgents.length)];
 		}

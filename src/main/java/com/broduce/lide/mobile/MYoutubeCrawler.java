@@ -1,8 +1,9 @@
 package com.broduce.lide.mobile;
 
-import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,6 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.broduce.lide.AbstractCrawler;
+import com.broduce.lide.UserAgent;
 import com.broduce.lide.model.Info;
 
 public class MYoutubeCrawler extends AbstractCrawler {
@@ -18,10 +20,9 @@ public class MYoutubeCrawler extends AbstractCrawler {
 	@Override
 	public List<Info> crawl(String url) {
 		List<Info> result = new ArrayList<Info>();
-		String body = get(
-				url,
-				"Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",
-				"");
+		Map<String, String> headerMap = new HashMap<String, String>();
+		headerMap.put("User-Agent", UserAgent.getUserAgent(true));
+		String body = get(url, headerMap);
 		System.out.println(body);
 		Pattern titlePtn = Pattern
 				.compile("\\\\\"title\\\\\": \\\\\"([^\"]+)\\\\\"");

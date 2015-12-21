@@ -1,7 +1,9 @@
 package com.broduce.lide.demo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,7 +22,9 @@ public class AnimevnCrawler extends AbstractCrawler {
 	@Override
 	public List<Info> crawl(String url) {
 		List<Info> result = new ArrayList<Info>();
-		String body = get(url, UserAgent.getUserAgent(true), "");
+		Map<String, String> headerMap = new HashMap<String, String>();
+		headerMap.put("User-Agent", UserAgent.getUserAgent(false));
+		String body = get(url, headerMap);
 		Matcher titleMtc = titlePtn.matcher(body);
 		String title = null;
 		if (titleMtc.find()) {
