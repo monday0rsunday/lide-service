@@ -14,6 +14,7 @@ import com.broduce.lide.demo.PhimmoiCrawler;
 import com.broduce.lide.demo.SoundcloundCrawler;
 import com.broduce.lide.demo.VimeoCrawler;
 import com.broduce.lide.demo.XemphimonCrawler;
+import com.broduce.lide.desktop.FacebookCrawler;
 import com.broduce.lide.desktop.KeengAlbumCrawler;
 import com.broduce.lide.desktop.KeengBaihatCrawler;
 import com.broduce.lide.desktop.KeengRadioCrawler;
@@ -48,6 +49,10 @@ public class Lider {
 	private HashMap<String, AbstractCrawler> hm = new HashMap<String, AbstractCrawler>();
 
 	public Lider() {
+		hm.put("https?://(www\\.)?(m\\.)?facebook.com/.*/videos/.*",
+				new FacebookCrawler());
+		hm.put("https?://m\\.facebook.com/story.php\\?.*",
+				new FacebookCrawler());
 		hm.put("https?://(www\\.)?(m\\.)?soundcloud.com/.*/.*",
 				new SoundcloundCrawler());
 

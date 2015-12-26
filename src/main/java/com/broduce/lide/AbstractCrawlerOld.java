@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
 
 import com.broduce.lide.model.Info;
 
-public abstract class AbstractCrawlerOld{
+public abstract class AbstractCrawlerOld {
 
 	private static final Logger logger = Logger
 			.getLogger(AbstractCrawlerOld.class);
@@ -67,7 +67,7 @@ public abstract class AbstractCrawlerOld{
 		return body.toString();
 	}
 
-	public String post(String url, String rbody) {
+	public String post(String url, Map<String, String> headers, String rbody) {
 		StringBuffer body = new StringBuffer();
 		try {
 			HttpURLConnection con = (HttpURLConnection) new URL(url)
@@ -75,6 +75,9 @@ public abstract class AbstractCrawlerOld{
 			con.setDoOutput(true);
 			con.setRequestMethod("POST");
 			con.setRequestProperty("User-Agent", UserAgent.getUserAgent(false));
+			for (String key : headers.keySet()) {
+				con.setRequestProperty(key, headers.get(key));
+			}
 			DataOutputStream writer = new DataOutputStream(
 					con.getOutputStream());
 			writer.writeBytes(rbody);
@@ -110,13 +113,15 @@ public abstract class AbstractCrawlerOld{
 		return body.toString();
 	}
 
-	public String get(String url, String cookie) {
+	public String get(String url, Map<String, String> headers) {
 		StringBuffer body = new StringBuffer();
 		try {
 			HttpURLConnection con = (HttpURLConnection) new URL(url)
 					.openConnection();
 			con.setRequestProperty("User-Agent", UserAgent.getUserAgent(false));
-			con.setRequestProperty("Cookie", cookie);
+			for (String key : headers.keySet()) {
+				con.setRequestProperty(key, headers.get(key));
+			}
 			con.connect();
 			for (String key : con.getHeaderFields().keySet()) {
 				for (String v : con.getHeaderFields().get(key)) {
