@@ -29,6 +29,7 @@ import com.broduce.lide.desktop.NhacsoVideoCrawler;
 import com.broduce.lide.desktop.NhacvuiBaihatCrawler;
 import com.broduce.lide.desktop.NhacvuiVideoCrawler;
 import com.broduce.lide.desktop.TvzingCrawler;
+import com.broduce.lide.desktop.TwitterCrawler;
 import com.broduce.lide.desktop.YoutubeCrawler;
 import com.broduce.lide.mobile.MKeengVideoCrawler;
 import com.broduce.lide.mobile.MMp3zingAlbumCrawler;
@@ -51,6 +52,8 @@ public class Lider {
 	public Lider() {
 		hm.put("https?://(www\\.)?(m\\.)?facebook.com/.*/videos/.*",
 				new FacebookCrawler());
+		hm.put("https?://(www\\.)?(mobile\\.)?twitter.com/.*/status/.*",
+				new TwitterCrawler());
 		hm.put("https?://m\\.facebook.com/story.php\\?.*",
 				new FacebookCrawler());
 		hm.put("https?://(www\\.)?(m\\.)?soundcloud.com/.*/.*",

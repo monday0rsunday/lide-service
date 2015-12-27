@@ -66,4 +66,19 @@ public class LiderDesktopTest {
 						.size());
 	}
 
+	@Test
+	public void testTwitter() {
+		Lider lider = new Lider();
+		assertEquals(
+				1,
+				lider.detect(
+						"https://twitter.com/guardian_sport/status/680697101072764928")
+						.size());
+		assertEquals(
+				1,
+				lider.detect(
+						"https://mobile.twitter.com/guardian_sport/status/680697101072764928")
+						.size());
+	}
+
 }
