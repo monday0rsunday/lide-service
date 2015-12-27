@@ -30,6 +30,7 @@ import com.broduce.lide.desktop.NhacvuiBaihatCrawler;
 import com.broduce.lide.desktop.NhacvuiVideoCrawler;
 import com.broduce.lide.desktop.TvzingCrawler;
 import com.broduce.lide.desktop.TwitterCrawler;
+import com.broduce.lide.desktop.VideoSinaComCnCrawler;
 import com.broduce.lide.desktop.YoutubeCrawler;
 import com.broduce.lide.mobile.MKeengVideoCrawler;
 import com.broduce.lide.mobile.MMp3zingAlbumCrawler;
@@ -43,6 +44,8 @@ import com.broduce.lide.mobile.MNhacsoVideoCrawler;
 import com.broduce.lide.mobile.MNhacvuiAlbumCrawler;
 import com.broduce.lide.mobile.MNhacvuiBaihatCrawler;
 import com.broduce.lide.mobile.MNhacvuiVideoCrawler;
+import com.broduce.lide.mobile.TudouComCrawler;
+import com.broduce.lide.mobile.VideoSinaCnCrawler;
 import com.broduce.lide.model.Info;
 
 public class Lider {
@@ -54,6 +57,16 @@ public class Lider {
 				new FacebookCrawler());
 		hm.put("https?://(www\\.)?(mobile\\.)?twitter.com/.*/status/.*",
 				new TwitterCrawler());
+		hm.put("https?://(www\\.)?(m\\.)?video.sina.com.cn/view/.*",
+				new VideoSinaComCnCrawler());
+		hm.put("https?://(www\\.)?(m\\.)?video.sina.com.cn/news/.*topvideo.*#[0-9]+.*",
+				new VideoSinaComCnCrawler());
+		hm.put("https?://(www\\.)?(m\\.)?video.sina.com.cn/ent/.*#[0-9]+.*",
+				new VideoSinaComCnCrawler());
+		hm.put("https?://(www\\.)?(m\\.)?video.sina.cn/.*detail.*",
+				new VideoSinaCnCrawler());
+		hm.put("https?://(www\\.)?(m\\.)?tudou.com/.*view.*",
+				new TudouComCrawler());
 		hm.put("https?://m\\.facebook.com/story.php\\?.*",
 				new FacebookCrawler());
 		hm.put("https?://(www\\.)?(m\\.)?soundcloud.com/.*/.*",

@@ -117,4 +117,27 @@ public class LiderMobileTest {
 						.size());
 	}
 
+	@Test
+	public void testVideoSinaCn() {
+		Lider lider = new Lider();
+		assertEquals(
+				1,
+				lider.detect(
+						"http://video.sina.cn/news/i/2015-12-26/detail-ifxmxxsp7014984.d.html?vt=4&pos=91")
+						.size());
+		assertEquals(
+				1,
+				lider.detect(
+						"http://video.sina.cn/sports/football/premierleague/2015-12-24/detail-ifxmxxst0394212.d.html")
+						.size());
+	}
+
+	@Test
+	public void testTudouCom() {
+		Lider lider = new Lider();
+		assertEquals(1,
+				lider.detect("http://www.tudou.com/programs/view/NXQVT5ZFz6w/")
+						.size());
+	}
+
 }

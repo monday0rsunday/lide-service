@@ -81,4 +81,19 @@ public class LiderDesktopTest {
 						.size());
 	}
 
+	@Test
+	public void testVideoSinaComCn() {
+		Lider lider = new Lider();
+		assertEquals(4,
+				lider.detect("http://video.sina.com.cn/view/250342743.html")
+						.size());
+		assertEquals(
+				4,
+				lider.detect(
+						"http://video.sina.com.cn/news/spj/topvideoes20151222/#250378863")
+						.size());
+		assertEquals(4, lider.detect("http://video.sina.com.cn/ent/#250386117")
+				.size());
+	}
+
 }
