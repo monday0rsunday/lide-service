@@ -62,6 +62,11 @@ public class LiderDesktopTest {
 		assertEquals(
 				4,
 				lider.detect(
+						"https://www.facebook.com/video.php?v=1669207346693116")
+						.size());
+		assertEquals(
+				4,
+				lider.detect(
 						"https://m.facebook.com/story.php?story_fbid=10153480402439495&id=647059494&refid=17&_ft_=top_level_post_id.10153480402439495%3Atl_objid.10153480402439495%3Athid.647059494%3A306061129499414%3A54%3A0%3A1451635199%3A3269890946520818912&__tn__=C")
 						.size());
 	}

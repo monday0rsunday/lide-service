@@ -55,6 +55,8 @@ public class Lider {
 	public Lider() {
 		hm.put("https?://(www\\.)?(m\\.)?facebook.com/.*/videos/.*",
 				new FacebookCrawler());
+		hm.put("https?://(www\\.)?(m\\.)?facebook.com/.*video\\.php.*",
+				new FacebookCrawler());
 		hm.put("https?://(www\\.)?(mobile\\.)?twitter.com/.*/status/.*",
 				new TwitterCrawler());
 		hm.put("https?://(www\\.)?(m\\.)?video.sina.com.cn/view/.*",
