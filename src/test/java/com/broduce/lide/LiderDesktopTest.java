@@ -1,6 +1,9 @@
 package com.broduce.lide;
 
 import org.junit.Test;
+
+import com.broduce.lide.js.JsLider;
+
 import static org.junit.Assert.*;
 
 public class LiderDesktopTest {
@@ -48,7 +51,32 @@ public class LiderDesktopTest {
 
 	@Test
 	public void testFacebook() {
-		Lider lider = new Lider();
+		ILider lider = new Lider();
+		assertEquals(
+				4,
+				lider.detect(
+						"https://www.facebook.com/minhcuong/videos/10153480402439495/")
+						.size());
+		assertEquals(
+				4,
+				lider.detect(
+						"http://facebook.com/647059494/videos/10153480402439495")
+						.size());
+		assertEquals(
+				4,
+				lider.detect(
+						"https://www.facebook.com/video.php?v=1669207346693116")
+						.size());
+		assertEquals(
+				4,
+				lider.detect(
+						"https://m.facebook.com/story.php?story_fbid=10153480402439495&id=647059494&refid=17&_ft_=top_level_post_id.10153480402439495%3Atl_objid.10153480402439495%3Athid.647059494%3A306061129499414%3A54%3A0%3A1451635199%3A3269890946520818912&__tn__=C")
+						.size());
+	}
+
+	@Test
+	public void testFacebookJs() {
+		ILider lider = new JsLider();
 		assertEquals(
 				4,
 				lider.detect(

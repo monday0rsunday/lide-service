@@ -112,9 +112,13 @@ public class LiderMobileTest {
 	@Test
 	public void testMYoutube() {
 		Lider lider = new Lider();
+		System.out.println(lider.detect("https://m.youtube.com/watch?v=_qJwr3Fg_HQ"));
 		assertEquals(5,
 				lider.detect("https://m.youtube.com/watch?v=_qJwr3Fg_HQ")
 						.size());
+		System.out.println(lider.detect("https://m.youtube.com/watch?v=YQHsXMglC9A"));
+		assertEquals(5,
+				lider.detect("https://m.youtube.com/watch?v=YQHsXMglC9A").size());
 	}
 
 	@Test

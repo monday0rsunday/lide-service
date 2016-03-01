@@ -48,7 +48,7 @@ import com.broduce.lide.mobile.TudouComCrawler;
 import com.broduce.lide.mobile.VideoSinaCnCrawler;
 import com.broduce.lide.model.Info;
 
-public class Lider {
+public class Lider implements ILider {
 	private static Logger logger = Logger.getLogger(Lider.class);
 	private HashMap<String, AbstractCrawler> hm = new HashMap<String, AbstractCrawler>();
 
@@ -56,6 +56,8 @@ public class Lider {
 		hm.put("https?://(www\\.)?(m\\.)?facebook.com/.*/videos/.*",
 				new FacebookCrawler());
 		hm.put("https?://(www\\.)?(m\\.)?facebook.com/.*video\\.php.*",
+				new FacebookCrawler());
+		hm.put("https?://m\\.facebook.com/story.php\\?.*",
 				new FacebookCrawler());
 		hm.put("https?://(www\\.)?(mobile\\.)?twitter.com/.*/status/.*",
 				new TwitterCrawler());
@@ -69,8 +71,6 @@ public class Lider {
 				new VideoSinaCnCrawler());
 		hm.put("https?://(www\\.)?(m\\.)?tudou.com/.*view.*",
 				new TudouComCrawler());
-		hm.put("https?://m\\.facebook.com/story.php\\?.*",
-				new FacebookCrawler());
 		hm.put("https?://(www\\.)?(m\\.)?soundcloud.com/.*/.*",
 				new SoundcloundCrawler());
 
@@ -168,6 +168,7 @@ public class Lider {
 		hm.put("https?://(www\\.)?tv.zing.vn/video/.*", new TvzingCrawler());
 	}
 
+	@Override
 	public List<Info> detect(String url) {
 		for (String pattern : hm.keySet()) {
 			if (url.matches(pattern)) {
@@ -182,6 +183,7 @@ public class Lider {
 		throw new RuntimeException("pattern not found");
 	}
 
+	@Override
 	public List<String> getSupportPatterns() {
 		List<String> rs = new ArrayList<String>();
 		rs.addAll(hm.keySet());

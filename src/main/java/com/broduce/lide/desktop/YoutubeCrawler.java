@@ -2,7 +2,9 @@ package com.broduce.lide.desktop;
 
 import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,6 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.broduce.lide.AbstractCrawler;
+import com.broduce.lide.UserAgent;
 import com.broduce.lide.model.Info;
 
 public class YoutubeCrawler extends AbstractCrawler {
@@ -18,7 +21,9 @@ public class YoutubeCrawler extends AbstractCrawler {
 	@Override
 	public List<Info> crawl(String url) {
 		List<Info> result = new ArrayList<Info>();
-		String body = get(url);
+		Map<String, String> headerMap = new HashMap<String, String>();
+		headerMap.put("User-Agent", "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:43.0) Gecko/20100101 Firefox/43.0");
+		String body = get(url.replace("m.youtube", "www.youtube"));
 		Pattern titlePtn = Pattern.compile("<title>([^<]+) - YouTube</title>");
 		Matcher titleMtc = titlePtn.matcher(body);
 		String title = "";
